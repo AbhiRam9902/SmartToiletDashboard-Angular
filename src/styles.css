@@ -1,1 +1,608 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+
+/* --- 1. Ant Design Core Styles --- */
+@import "ng-zorro-antd/ng-zorro-antd.min.css";
+
+
+/* --- 2. GLOBAL FONT IMPORTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;700&display=swap');
+
+
+/* --- 3. CSS VARIABLES (Your Custom Color Palette, Sizing, Shadows) --- */
+:root {
+  --bg: #ffffff; /* Background for the overall page */
+  --text: #0f172a; /* Main text color */
+  --muted: #6b7280; /* Muted text color */
+  --border: #e6e8ec; /* Standard border color */
+  --card-bg: #ffffff; /* White background for cards */
+  --radius: 14px; /* Standard card border radius (for main panel cards) */
+  --radius-sm: 8px; /* Smaller border radius (for inner data cards) */
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06); /* Subtle shadow for cards */
+
+  --color-green: #16a34a; /* General green */
+  --color-red: #ef4444; /* General red */
+  --color-blue: #3b82f6; /* General blue */
+  --color-purple: #8b5cf6; /* General purple */
+  --color-orange: #f59e0b; /* General orange */
+
+  --icon-color-default: #64748b; /* Default icon color */
+
+  /* Badge/Chip specific colors (used across components) */
+  --badge-success-bg: #eafaf0;
+  --badge-success-text: var(--color-green);
+
+  --chip-green-bg: #eafaf0;
+  --chip-green-text: var(--color-green);
+  --chip-blue-bg: #eff6ff;
+  --chip-blue-text: var(--color-blue);
+  --chip-purple-bg: #f3e8ff;
+  --chip-purple-text: var(--color-purple);
+  --chip-orange-bg: #fff7ed;
+  --chip-orange-text: var(--color-orange);
+
+  --chip-danger-bg: #fee2e2;
+  --chip-danger-text: var(--color-red);
+  --chip-warn-bg: #fffbeb;
+  --chip-warn-text: #d97706;
+  --chip-info-bg: #eef2ff;
+  --chip-info-text: var(--muted);
+
+  /* Zone & Trend Analysis specific variables (for tabs and usage pills) */
+  --pill: #f5f6f8; /* Background for ZTA tabs */
+  --pill-active: #ffffff; /* Background for active ZTA tab */
+  --pill-border: #e5e7eb; /* Border for ZTA tabs/buttons */
+
+
+  --pill-low-bg: #E9F9F0;   --pill-low-text: #22C55E;   --pill-low-border: #A7F3D0;
+  --pill-medium-bg: #FFF4E5;   --pill-medium-text: #D97706;   --pill-medium-border: #FDE7C3;
+  --pill-high-bg: #FDECEC;  --pill-high-text: #EF4444;  --pill-high-border: #FACDCD;
+}
+
+
+/* --- 4. GLOBAL RESETS & BASE TYPOGRAPHY --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+*, *::before, *::after { box-sizing: inherit; }
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 24;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+
+/* --- 5. DASHBOARD CONTAINER --- */
+.dashboard-container {
+  width: 100%;
+  padding: 24px 40px;
+  margin: 0 auto;
+}
+
+
+/* --- 6. GLOBAL TYPOGRAPHY & UTILITY CLASSES --- */
+.title { font-size: 22px; font-weight: 700; margin: 0 0 4px; }
+.subtitle { color: var(--muted); font-size: 13px; }
+
+.section { margin-top: 20px; }
+.section__head { margin-bottom: 12px; }
+.section__title { font-size: 16px; font-weight: 600; margin: 0 0 2px; }
+.section__sub { color: var(--muted); font-size: 12.5px; }
+
+.p18 { padding: 18px !important; } /* General padding for grid containers */
+.mt24 { margin-top: 24px !important; }
+
+.muted { color: var(--muted); font-size: 12.5px; }
+.small { font-size: 12px; }
+
+
+/* --- 7. ANT DESIGN COMPONENT OVERRIDES --- */
+
+/* --- NZ-CARD Overrides (General for all nz-card elements) --- */
+nz-card {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+  border: 1px solid var(--border) !important;
+  background-color: var(--card-bg) !important;
+  padding: 0 !important; /* Control padding via .ant-card-body */
+  margin-bottom: 16px; /* Spacing between cards when stacked */
+
+  .ant-card-body {
+    padding: 16px !important; /* Default card content padding */
+  }
+
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(16, 24, 40, 0.1);
+  }
+}
+
+/* --- NZ-GRID (nz-row, nz-col) Overrides --- */
+.ant-row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Consistent spacing between columns/cards */
+}
+
+/* Ensure nz-col children stretch to fill height */
+.ant-row[nzGutter] > .ant-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  flex-grow: 1;
+}
+
+/* Specific overrides for column sizing for different layouts */
+/* KPI: 5 columns on large screens */
+.ant-col-lg-5 {
+  flex: 0 0 calc(20% - (16px * 4 / 5)) !important;
+  max-width: calc(20% - (16px * 4 / 5)) !important;
+}
+/* Smart Analytics Insights: 4 columns on medium/large screens */
+.ant-col-md-6 {
+  flex: 0 0 calc(25% - (16px * 3 / 4)) !important;
+  max-width: calc(25% - (16px * 3 / 4)) !important;
+}
+/* Smart Analytics Anomalies/Repeats: 3 columns on medium/large screens */
+.ant-col-md-8 {
+  flex: 0 0 calc(33.33333% - (16px * 2 / 3)) !important;
+  max-width: calc(33.33333% - (16px * 2 / 3)) !important;
+}
+/* Zone & Trend Analysis: 4 columns on large screens (same as md-6 but for lg) */
+.ant-col-lg-6 {
+  flex: 0 0 calc(25% - (16px * 3 / 4)) !important;
+  max-width: calc(25% - (16px * 3 / 4)) !important;
+}
+
+
+/* --- NZ-DIVIDER Overrides --- */
+nz-divider.ant-divider-horizontal {
+  border-top: 1px solid var(--border) !important;
+  margin: 8px 0 !important;
+}
+
+
+/* --- NZ-TAG Overrides (General chip/badge styles used across components) --- */
+nz-tag {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  padding: 4px 8px !important;
+  border-radius: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  border: 1px solid transparent !important;
+  height: auto !important;
+  line-height: normal !important;
+  white-space: nowrap;
+}
+
+/* KPI Badge Specific */
+.kpi-badge.success {
+  background: var(--badge-success-bg) !important;
+  color: var(--badge-success-text) !important;
+  border-color: var(--badge-success-bg) !important;
+}
+
+/* General Chip Tones (used in Smart Analytics, etc.) */
+.chip.green { background: var(--chip-green-bg) !important; color: var(--chip-green-text) !important; border-color: var(--chip-green-bg) !important; }
+.chip.blue { background: var(--chip-blue-bg) !important; color: var(--chip-blue-text) !important; border-color: var(--chip-blue-bg) !important; }
+.chip.purple { background: var(--chip-purple-bg) !important; color: var(--chip-purple-text) !important; border-color: var(--chip-purple-bg) !important; }
+.chip.orange { background: var(--chip-orange-bg) !important; color: var(--chip-orange-text) !important; border-color: var(--chip-orange-bg) !important; }
+.chip.pill { border-radius: 999px !important; } /* Pill shape for some chips */
+
+/* Chip Severity Tones (used in Smart Analytics Anomalies) */
+.chip.danger { background: var(--chip-danger-bg) !important; color: var(--chip-danger-text) !important; border-color: var(--chip-danger-bg) !important; }
+.chip.warn { background: var(--chip-warn-bg) !important; color: var(--chip-warn-text) !important; border-color: var(--chip-warn-bg) !important; }
+.chip.info { background: var(--chip-info-bg) !important; color: var(--chip-info-text) !important; border-color: var(--chip-info-bg) !important; }
+
+
+/* --- 8. CUSTOM COMPONENT-SPECIFIC STYLES --- */
+
+/* --- DASHBOARD HEADER --- */
+/* (Add styles for dashboard-header component if any, e.g., .header-profile-pic) */
+
+
+/* --- EXECUTIVE SUMMARY (KPI Cards) --- */
+nz-card.kpi {
+  .ant-card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+  }
+}
+.kpi__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.icon-wrapper { /* Icon background circle for KPIs */
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  display: grid; place-items: center;
+  i.anticon {
+    font-size: 18px;
+  }
+}
+.icon-wrapper .material-symbols-outlined { /* Material symbol for KPI icon */
+  font-size: 18px;
+  color: var(--icon-color-default);
+}
+.kpi__label { font-size: 12.5px; color: var(--muted); flex-grow: 1; }
+.kpi__value { font-size: 22px; font-weight: 700; letter-spacing: -0.2px; margin-top: 2px; }
+.kpi__sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.kpi__delta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.kpi__delta .material-symbols-outlined {
+  font-size: 16px;
+  font-variation-settings: "FILL" 1;
+}
+.kpi__delta.up { color: var(--color-green); }
+.kpi__delta.down { color: var(--color-red); }
+
+
+/* --- SMART ANALYTICS --- */
+nz-card.panel-card { /* Main panel card for Smart Analytics section */
+  .ant-card-body {
+    padding: 0 !important; /* Override default Ant Card body padding to control inner sections */
+  }
+}
+
+.panel__head { /* Header for sub-sections within panel-card */
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.panel__title {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel__dot { /* Colored dots next to panel titles */
+  width: 9px; height: 9px; border-radius: 999px; display: inline-block;
+}
+.panel__dot.blue { background: var(--color-blue); }
+.panel__dot.red { background: var(--color-red); }
+.panel__dot.orange { background: var(--color-orange); }
+
+/* Consolidated styles for Insight, Anomaly, Repeat cards within Smart Analytics */
+nz-card.data-card {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important; /* No individual shadow */
+  border: 1px solid var(--border) !important;
+  background-color: var(--card-bg) !important;
+  height: 100%; /* Ensure equal height in grid */
+
+  .ant-card-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 16px 16px 10px !important; /* Adjusted left padding for icon */
+    position: relative;
+  }
+
+  &:hover {
+    transform: none; /* No hover animation for these smaller cards */
+    box-shadow: none;
+  }
+}
+
+.data-card__icon-wrapper { /* Left icon wrapper for Smart Analytics cards */
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .material-symbols-outlined {
+    font-size: 32px;
+    line-height: 1;
+  }
+}
+
+.data-card__content-wrapper { /* Right content wrapper for Smart Analytics cards */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.data-card__top { /* Top section within content wrapper (for badge) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.data-card__title { /* Title for Smart Analytics cards */
+  font-weight: 700;
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+.data-card__desc { /* Description for Smart Analytics cards */
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+
+/* --- ZONE & TREND ANALYSIS --- */
+
+/* Tabs for Zone & Trend Analysis */
+.zta-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--pill);
+  border: 1px solid var(--pill-border);
+  padding: 4px;
+  border-radius: 999px;
+  width: max-content;
+  margin-top: 16px;
+}
+
+.zta-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+
+  &.active {
+    background: var(--pill-active);
+    box-shadow: var(--shadow);
+    color: var(--text);
+  }
+
+  &:hover:not(.active) {
+    background: var(--border); /* Light hover for tabs */
+  }
+}
+
+/* Legend Row Styling for ZTA */
+.zta-legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0 12px;
+}
+
+.zta-legend-title {
+  font-size: 16px;
+  margin: 0;
+  color: var(--text);
+}
+
+.zta-legend {
+  display: flex;
+  gap: 18px;
+  color: var(--muted);
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.zta-dot { /* Status dots in the ZTA legend */
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.zta-dot-good { background: var(--color-green); }
+.zta-dot-warning { background: var(--color-orange); }
+.zta-dot-critical { background: var(--color-red); }
+
+
+/* Zone Card Styling for ZTA (main card design) */
+nz-card.zone-card {
+  border-radius: 14px !important;
+  box-shadow: var(--shadow) !important;
+  border: 1px solid var(--border) !important;
+  background-color: var(--card-bg) !important;
+  height: 100%; /* Ensures equal height in grid */
+  padding: 0 !important; /* Control padding via ant-card-body */
+
+  .ant-card-body {
+    padding: 16px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute content vertically */
+    height: 100%; /* Ensure body fills card height */
+  }
+
+  &:hover {
+    transform: translateY(-2px); /* Keep hover effect for main cards */
+    box-shadow: 0 4px 8px rgba(16, 24, 40, 0.1);
+  }
+}
+
+.zone-card__head { /* Header of each zone card */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.zone-card__title { /* Title within zone card header */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--text);
+
+  .material-symbols-outlined { /* Pin icon in zone card title */
+    font-size: 16px;
+    color: var(--muted);
+  }
+}
+
+.zone-status-dot { /* Status dot next to zone card title */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  &.status-good { background: var(--color-green); }
+  &.status-warning { background: var(--color-orange); }
+  &.status-critical { background: var(--color-red); }
+}
+
+.zone-card__body { /* Grid for metrics within zone card */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for metrics */
+  gap: 12px 24px; /* Row and column gap */
+  margin: 8px 0 10px; /* Spacing around the metrics grid */
+}
+
+.zone-metric { /* Individual metric item within zone card */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Push label to left, value to right */
+  padding: 0; /* No padding on metric container itself */
+
+  .material-symbols-outlined { /* Icon for each metric */
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+
+
+  .value { /* Value for each metric (e.g., "4.2/5") */
+    font-weight: 700;
+    color: var(--text);
+  }
+}
+
+/* Styling for the "chip" within each metric (e.g., "Rating" or "AQI" background) */
+.zone-metric .chip-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--card-bg); /* Default white background for chips */
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted); /* Muted text for the label itself */
+  font-weight: 600;
+}
+
+/* Special amber chips for Rating and AQI in ZTA */
+.zone-metric:nth-child(1) .chip-label, /* Rating */
+.zone-metric:nth-child(2) .chip-label { /* AQI */
+  background: #FFFBEB; /* Light amber background */
+  border-color: #F3D08F; /* Amber border */
+  box-shadow: inset 0 -2px 4px rgba(245,158,11,.18); /* Subtle amber inner shadow */
+}
+
+
+.zone-card__footer { /* Footer of each zone card */
+  margin-top: auto; /* Pushes footer to the bottom if content varies */
+  padding-top: 10px; /* Space between body and footer */
+}
+
+/* Usage Badge styling for ZTA (specific colored pills) */
+nz-tag.badge {
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  border: 1px solid transparent !important; /* Transparent border for pills */
+
+  &.low {
+    background: var(--pill-low-bg) !important;
+    color: var(--pill-low-text) !important;
+    border-color: var(--pill-low-border) !important;
+  }
+  &.medium {
+    background: var(--pill-medium-bg) !important;
+    color: var(--pill-medium-text) !important;
+    border-color: var(--pill-medium-border) !important;
+  }
+  &.high {
+    background: var(--pill-high-bg) !important;
+    color: var(--pill-high-text) !important;
+    border-color: var(--pill-high-border) !important;
+  }
+}
+
+/* Override Ant Design Button to match ghost style in ZTA cards */
+nz-button {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid var(--pill-border) !important; /* Using pill-border for button border */
+  border-radius: 8px !important;
+  background: var(--card-bg) !important;
+  color: var(--text) !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover {
+    background: #F9FAFB !important; /* Light hover effect */
+  }
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS (General for all components) --- */
+@media (max-width: 1200px) {
+  .ant-col-lg-5 {
+    flex: 0 0 calc(33.33333% - (16px * 2 / 3)) !important;
+    max-width: calc(33.33333% - (16px * 2 / 3)) !important;
+  }
+  .ant-col-md-6 {
+    flex: 0 0 calc(50% - (16px * 1 / 2)) !important;
+    max-width: calc(50% - (16px * 1 / 2)) !important;
+  }
+  .ant-col-md-8 {
+    flex: 0 0 calc(50% - (16px * 1 / 2)) !important;
+    max-width: calc(50% - (16px * 1 / 2)) !important;
+  }
+  .ant-col-lg-6 {
+    flex: 0 0 calc(33.33333% - (16px * 2 / 3)) !important;
+    max-width: calc(33.33333% - (16px * 2 / 3)) !important;
+  }
+}
+@media (max-width: 768px) {
+  .ant-col-xs-24, .ant-col-sm-12, .ant-col-md-6, .ant-col-md-8, .ant-col-lg-5, .ant-col-lg-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .dashboard-container {
+    padding: 16px !important;
+  }
+}

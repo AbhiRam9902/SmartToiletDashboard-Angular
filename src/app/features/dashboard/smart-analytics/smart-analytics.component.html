@@ -1,0 +1,89 @@
+<section class="section">
+  <div class="section__head">
+    <h2 class="section__title">{{ smartAnalyticsData?.smartAnalyticsTitle }}</h2>
+    <div class="section__sub">{{ smartAnalyticsData?.smartAnalyticsSubtitle }}</div>
+  </div>
+
+  <nz-card class="panel-card">
+    <div class="panel__head">
+      <div class="panel__title">
+        <i nz-icon [nzType]="'radar-chart'" [nzTheme]="'outline'"></i>
+        Smart Insights
+      </div>
+    </div>
+
+    <!-- Smart Insights Grid -->
+    <div nz-row [nzGutter]="[16, 16]" class="p18">
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6" *ngFor="let insight of smartAnalyticsData?.insights">
+        <nz-card class="data-card">
+          <div class="data-card__icon-wrapper">
+
+            <span class="material-symbols-outlined" [style.color]="getInsightIconColor(insight.badge.tone)">{{
+              getInsightIcon(insight.badge.text) }}</span>
+          </div>
+          <div class="data-card__content-wrapper">
+            <div class="data-card__top">
+              <nz-tag class="chip" [ngClass]="insight.badge.tone">{{ insight.badge.text }}</nz-tag>
+            </div>
+            <div class="data-card__title">{{ insight.title }}</div>
+            <div class="data-card__desc">{{ insight.description }}</div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+
+    <nz-divider></nz-divider>
+
+    <div class="panel__head">
+      <div class="panel__title">
+        <span class="panel__dot red"></span>
+        {{ smartAnalyticsData?.anomaliesTitle }}
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="[16, 16]" class="p18">
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6" *ngFor="let anomaly of smartAnalyticsData?.anomalies">
+        <nz-card class="data-card">
+          <div class="data-card__icon-wrapper">
+            <span class="material-symbols-outlined" [style.color]="getAnomalyIconColor(anomaly.severity)">{{
+              getAnomalyIcon(anomaly.title) }}</span>
+          </div>
+          <div class="data-card__content-wrapper">
+            <div class="data-card__top">
+              <nz-tag class="chip" [ngClass]="getSeverityBadgeClass(anomaly.severity)">{{ anomaly.severity }}</nz-tag>
+            </div>
+            <div class="data-card__title">{{ anomaly.title }}</div>
+            <div class="muted">{{ anomaly.meta }}</div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+
+    <nz-divider></nz-divider>
+
+    <div class="panel__head mt24">
+      <div class="panel__title">
+        <span class="panel__dot orange"></span>
+        {{ smartAnalyticsData?.repeatTitle }}
+      </div>
+    </div>
+
+    <div nz-row [nzGutter]="[16, 16]" class="p18">
+      <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6" *ngFor="let repeat of smartAnalyticsData?.repeats">
+        <nz-card class="data-card">
+          <div class="data-card__icon-wrapper">
+            <span class="material-symbols-outlined" [style.color]="getRepeatIconColor(repeat.title)">{{
+              getRepeatIcon(repeat.title) }}</span>
+          </div>
+          <div class="data-card__content-wrapper">
+            <div class="data-card__top">
+              <nz-tag class="chip pill orange">{{ repeat.badge }}</nz-tag>
+            </div>
+            <div class="data-card__title">{{ repeat.title }}</div>
+            <div class="muted">{{ repeat.meta }}</div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+  </nz-card>
+</section>

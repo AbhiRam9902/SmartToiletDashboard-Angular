@@ -1,0 +1,11 @@
+{
+  "executiveSummaryTitle": "Executive Summary",
+  "executiveSummarySubtitle": "Mission-critical KPIs at a glance",
+  "kpis": [
+    { "label": "Avg Feedback Rating", "value": "4.2/5", "delta": "+6% vs last week", "deltaType": "up" },
+    { "label": "Air Quality Compliance %", "value": "92%", "delta": "+3% vs last week", "deltaType": "up", "badge": { "text": "Excellent", "tone": "success" } },
+    { "label": "Total Footfall Today", "value": "1,247", "delta": "+12% vs yesterday", "deltaType": "up" },
+    { "label": "Peak Usage Hours", "value": "12–2 PM", "sub": "156/hr max today", "deltaType": "up" },
+    { "label": "Total Incidents", "value": "23", "delta": "-15% vs last week", "deltaType": "down" }
+  ]
+}

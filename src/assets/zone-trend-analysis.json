@@ -1,0 +1,61 @@
+{
+  "zoneTrendTitle": "Zone & Trend Analysis",
+  "zoneTrendSubtitle": "Detailed insights per zone and long-term trends",
+ "updatedAt": "2025-08-17T09:00:00Z",
+  "zones": [
+    {
+      "id": "lobby-l1",
+      "name": "Lobby L1",
+      "status": "warning",
+      "rating": 4.2,
+      "aqi": 85,
+      "incidents": 8,
+      "usage": "High"
+    },
+    {
+      "id": "washroom-m1",
+      "name": "Washroom M1",
+      "status": "good",
+      "rating": 3.9,
+      "aqi": 78,
+      "incidents": 5,
+      "usage": "Medium"
+    },
+    {
+      "id": "washroom-l2",
+      "name": "Washroom L2",
+      "status": "critical",
+      "rating": 4.1,
+      "aqi": 82,
+      "incidents": 12,
+      "usage": "High"
+    },
+    {
+      "id": "office-o3",
+      "name": "Office O3",
+      "status": "good",
+      "rating": 4.4,
+      "aqi": 90,
+      "incidents": 2,
+      "usage": "Low"
+    },
+    {
+      "id": "cafe-c1",
+      "name": "Café C1",
+      "status": "warning",
+      "rating": 4.0,
+      "aqi": 75,
+      "incidents": 15,
+      "usage": "High"
+    },
+    {
+      "id": "meeting-m4",
+      "name": "Meeting M4",
+      "status": "good",
+      "rating": 4.3,
+      "aqi": 88,
+      "incidents": 1,
+      "usage": "Low"
+    }
+  ]
+}

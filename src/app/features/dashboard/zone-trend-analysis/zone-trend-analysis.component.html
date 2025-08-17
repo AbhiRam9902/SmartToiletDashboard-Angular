@@ -1,0 +1,86 @@
+
+<section class="section">
+    <div class="section__head">
+        <h2 class="section__title">{{ zoneTrendData?.zoneTrendTitle }}</h2>
+        <div class="section__sub">{{ zoneTrendData?.zoneTrendSubtitle }}</div>
+    </div>
+
+    <nz-card class="panel-card">
+        <div class="panel__head">
+            <div class="panel__title">
+                <i nz-icon [nzType]="'radar-chart'" [nzTheme]="'outline'"></i>
+                Zone Snapshot
+            </div>
+            <div class="zta-tabs">
+                <button class="zta-tab active">Zone Snapshot</button>
+                <button class="zta-tab">7-Day Trends</button>
+                <button class="zta-tab">Heatmaps</button>
+                <button class="zta-tab">Feedback</button>
+                <button class="zta-tab">Alerts</button>
+            </div>
+        </div>
+
+        <div class="zta-legend-row p18">
+            <h3 class="zta-legend-title">Zone Overview</h3>
+            <div class="zta-legend">
+                <span><i class="zta-dot zta-dot-good"></i> Good</span>
+                <span><i class="zta-dot zta-dot-warning"></i> Warning</span>
+                <span><i class="zta-dot zta-dot-critical"></i> Critical</span>
+            </div>
+        </div>
+
+        <nz-divider></nz-divider>
+
+        <div nz-row [nzGutter]="[16, 16]" class="p18">
+            <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8 " [nzLg]="6"
+                *ngFor="let zone of zoneTrendData?.zones; trackBy: trackById">
+                <nz-card class="zone-card"> 
+                    <div class="zone-card__head">
+                        <div class="zone-card__title">
+                            <span class="material-symbols-outlined">place</span>
+                            <span>{{ zone.name }}</span>
+                        </div>
+                        <i class="zone-status-dot" [ngClass]="getZoneStatusClass(zone.status)"
+                            [title]="zone.status"></i>
+                    </div>
+
+                    <div class="zone-card__body">
+                        <div class="zone-metric">
+
+                            <span class="material-symbols-outlined">{{ getMetricIcon('rating') }}</span>
+                            <span class="label">Rating</span>
+                            <span class="value">{{ zone.rating.toFixed(1) }}/5</span>
+                        </div>
+                        <div class="zone-metric"> 
+                            <span class="material-symbols-outlined">{{ getMetricIcon('aqi') }}</span>
+                            <span class="label">AQI</span>
+                            <span class="value">{{ zone.aqi }}</span>
+                        </div>
+                        <div class="zone-metric">
+                            
+                            <span class="material-symbols-outlined">{{ getMetricIcon('incidents') }}</span>
+                            <span class="label">Incidents</span>
+                            <span class="value">{{ zone.incidents }}</span>
+                        </div>
+                        <div class="zone-metric"> 
+                            <span class="material-symbols-outlined">{{ getMetricIcon('usage') }}</span>
+                            <span class="label">Usage</span>
+                            <span class="value">
+                                <nz-tag class="badge" [ngClass]="getUsageBadgeClass(zone.usage)">{{ zone.usage
+                                    }}</nz-tag>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="zone-card__footer">
+                        <button nz-button nzBlock>View Details</button>
+                        <div class="muted small" style="margin-top:8px;">
+                            Last update: <span>{{ formatUpdateTime(zoneTrendData!.updatedAt) }}</span>
+                            
+                        </div>
+                    </div>
+                </nz-card>
+            </div>
+        </div>
+    </nz-card>
+</section>

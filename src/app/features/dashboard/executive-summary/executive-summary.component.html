@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="section__head">
+    <h2 class="section__title">{{ executiveSummaryData?.executiveSummaryTitle }}</h2>
+    <div class="section__sub">{{ executiveSummaryData?.executiveSummarySubtitle }}</div>
+  </div>
+
+  <div nz-row [nzGutter]="[16, 16]" class="kpi-row-stretch">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="5" [nzLg]="5" *ngFor="let kpi of executiveSummaryData?.kpis">
+      <nz-card class="kpi">
+       <div class="kpi__top">
+  <div class="icon-wrapper">
+
+    <i nz-icon
+       [nzType]="getKpiIcon(kpi.label)"
+       [nzTheme]="'outline'"
+       [style.color]="getKpiIconColor(kpi.label)"> 
+    </i>
+  </div>
+  <nz-tag *ngIf="kpi.badge" class="kpi-badge" [ngClass]="kpi.badge.tone">{{ kpi.badge.text }}</nz-tag>
+</div>
+
+        <div class="kpi__label">{{ kpi.label }}</div>
+        <div class="kpi__value">{{ kpi.value }}</div>
+        <div class="kpi__sub" *ngIf="kpi.sub">{{ kpi.sub }}</div>
+
+        <div class="kpi__delta" [ngClass]="kpi.deltaType" *ngIf="kpi.delta">
+          <span class="material-symbols-outlined">{{ getDeltaArrow(kpi.deltaType) }}</span>
+          <span>{{ kpi.delta }}</span>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+</section>

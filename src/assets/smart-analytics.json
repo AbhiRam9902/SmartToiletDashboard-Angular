@@ -1,0 +1,22 @@
+{
+  "smartAnalyticsTitle": "Smart Analytics",
+  "smartAnalyticsSubtitle": "AI-powered insights, anomaly detection, and operational intelligence",
+  "insights": [
+    { "badge": { "text": "Descriptive", "tone": "green" }, "title": "Wednesday Peak Pattern", "description": "Wednesdays show 22% higher average footfall in Lobby Zones" },
+    { "badge": { "text": "Predictive", "tone": "blue" }, "title": "Tomorrow's Peak Forecast", "description": "75% chance of >150 people/hour in Lobby L1 at 3 PM tomorrow" },
+    { "badge": { "text": "Correlated", "tone": "purple" }, "title": "Usage Correlation", "description": "Footfall in Lobby L1 strongly correlates with Washroom M1 (r = 0.70)" },
+    { "badge": { "text": "Actionable", "tone": "orange" }, "title": "Cleaning Alert", "description": "High Footfall Expected at 2PM — Suggest Cleaning Prep" }
+  ],
+  "anomaliesTitle": "Smart Anomalies",
+  "anomalies": [
+    { "severity": "High", "title": "Ammonia Spike Without Footfall", "meta": "Washroom L2 • 2:15 PM" },
+    { "severity": "Medium", "title": "Soap Dispensed Despite No Occupancy", "meta": "Washroom M1 • 10:30 AM" },
+    { "severity": "Low", "title": "No Feedback Despite Heavy Usage", "meta": "Lobby L1 • 1:45 PM" }
+  ],
+  "repeatTitle": "Repeat Issues",
+  "repeats": [
+    { "badge": "4x in 3 Days", "title": "Bin Overflow Recurring", "meta": "Lobby M1 • This Week" },
+    { "badge": "3x This Week", "title": "No Paper Detected", "meta": "Washroom F2 • Last 7 Days" },
+    { "badge": "5x This Month", "title": "Air Quality Alerts", "meta": "Office O3 • Last 30 Days" }
+  ]
+}
